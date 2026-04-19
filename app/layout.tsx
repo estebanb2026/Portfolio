@@ -36,6 +36,11 @@ export const metadata: Metadata = {
     url: site.canonical,
     siteName: "Esteban Barrera Portfolio",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Esteban Barrera — Senior Product Designer",
+    description: "Designed for humans. Built with AI.",
+  },
 };
 
 export default function RootLayout({
