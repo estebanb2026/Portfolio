@@ -137,12 +137,18 @@ function ProjectScreenshot({
   insetClassName?: string;
   imageClassName?: string;
 }) {
-  // Default object-contain (full frame visible); add object-cover in data to fill-crop.
+  // Default object-contain in data; add object-cover in data for explicit fill-crop.
   const imgClass =
     imageClassName?.includes("object-cover") ||
     imageClassName?.includes("object-contain")
       ? (imageClassName ?? "")
       : `object-contain ${imageClassName ?? ""}`.trim();
+
+  const usesCover = imageClassName?.includes("object-cover");
+  // Mobile: object-fill removes letterboxing. Desktop (lg+): object-cover fills the slot; object-left/top from data set focal point.
+  const imageFitClass = usesCover
+    ? imgClass
+    : `${imgClass} max-lg:object-fill lg:object-cover`.trim();
 
   return (
     <div className="relative w-full overflow-hidden bg-app-surface aspect-[16/9] min-h-[14rem] sm:min-h-[15rem] lg:aspect-[2/1] lg:min-h-[220px]">
@@ -155,7 +161,7 @@ function ProjectScreenshot({
           fill
           priority={priority}
           sizes="(min-width: 1024px) 42vw, 100vw"
-          className={imgClass}
+          className={imageFitClass}
         />
       </div>
     </div>
