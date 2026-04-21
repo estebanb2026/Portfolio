@@ -2,17 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* Dark (default) */
+html.dark {
+  color-scheme: dark;
   --bg-primary: #0a0a0a;
   --bg-secondary: #111111;
   --bg-glass: rgba(255, 255, 255, 0.04);
   --border-glass: rgba(255, 255, 255, 0.08);
   --text-primary: #f0f0f0;
   --text-secondary: #888888;
-  --text-muted: #444444;
+  --text-muted: #555555;
   --accent: #e8e8e8;
   --accent-warm: #c8b89a;
   --border-subtle: #1f1f1f;
+}
+
+/* Light — same structure: glass, muted hierarchy, warm accent */
+html.light {
+  color-scheme: light;
+  --bg-primary: #f2f2f0;
+  --bg-secondary: #e8e8e6;
+  --bg-glass: rgba(0, 0, 0, 0.035);
+  --border-glass: rgba(0, 0, 0, 0.08);
+  --text-primary: #111111;
+  --text-secondary: #5c5c5a;
+  --text-muted: #8a8a88;
+  --accent: #1a1a1a;
+  --accent-warm: #6b5c3e;
+  --border-subtle: #d4d4d0;
 }
 
 @layer base {
@@ -39,7 +56,7 @@
   }
 
   .font-display {
-    font-family: var(--font-instrument-serif), ui-serif, Georgia, serif;
+    font-family: var(--font-clash-display), ui-sans-serif, system-ui, sans-serif;
   }
 
   .font-mono-label {
@@ -50,9 +67,10 @@
   }
 
   .hero-title {
-    font-family: var(--font-instrument-serif), ui-serif, Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
+    font-family: var(--font-clash-display), ui-sans-serif, system-ui, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: -0.02em;
     line-height: 1.05;
     color: var(--text-primary);
     font-size: clamp(3rem, 7vw, 6rem);
@@ -69,5 +87,42 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  @keyframes logo-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .logo-marquee-track {
+    animation: logo-marquee 42s linear infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-marquee-track {
+      animation: none;
+    }
+  }
+
+  .logo-marquee-fade {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
   }
 }

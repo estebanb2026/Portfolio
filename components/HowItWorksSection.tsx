@@ -1,54 +1,52 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Bot,
-  Code2,
   FileStack,
-  LayoutGrid,
+  Layers,
   MousePointer2,
   PenLine,
   Search,
 } from "lucide-react";
 import { GlassCard } from "@/components/GlassCard";
 import { SectionLabel } from "@/components/SectionLabel";
-import { inViewBlock } from "@/lib/motion";
 import type { LucideIcon } from "lucide-react";
 
 const TOOLS: { name: string; description: string; Icon: LucideIcon }[] = [
   {
     name: "Figma",
-    description: "Where systems, components, and flows get structured",
+    description:
+      "My design source of truth. Every component, variant, token, and spec lives here — pixel-perfect, version-controlled, and always handoff-ready. It's not where I start exploring; it's where decisions become real.",
     Icon: PenLine,
   },
   {
     name: "Claude Code",
-    description: "My second pair of hands in the terminal and in Figma via MCP",
+    description:
+      "Two superpowers in one tool. Through Figma MCP, I edit designs, inject mock data, and generate components without leaving my editor. Through the terminal — mine or Cursor's — I can build anything from scratch: prototypes, full features, entire sites.",
     Icon: Bot,
   },
   {
     name: "Cursor",
-    description: "AI-assisted code editing for prototypes and production",
+    description:
+      "My primary IDE. I write, debug, and ship code here with Claude running inline as a pair programmer. It handles everything from quick component edits to full feature builds — including the site you're looking at right now.",
     Icon: MousePointer2,
   },
   {
-    name: "Lovable",
-    description: "Fast 0→1 UI scaffolding for rapid concept validation",
-    Icon: LayoutGrid,
-  },
-  {
-    name: "V0",
-    description: "Component generation for quick visual exploration",
-    Icon: Code2,
+    name: "Lovable & v0",
+    description:
+      "When I need a directional concept in under an hour. I use Lovable and v0 to generate ugly-but-functional UI scaffolding fast — so teams can react to something real instead of a static mockup.",
+    Icon: Layers,
   },
   {
     name: "Paper.design",
-    description: "Bridging Figma and live browser for real-feel prototyping",
+    description:
+      "Connected to Claude Code via MCP, Paper becomes my live visual editor in the browser. I can build and see changes in real time — often skipping Figma entirely when I need to arrive at a solution fast, while still keeping full control to refine the details.",
     Icon: FileStack,
   },
   {
-    name: "Perplexity",
-    description: "Research, competitor analysis, and fast fact-checking",
+    name: "Perplexity & Claude",
+    description:
+      "For research, competitive audits, and fast fact-checking. I also use Claude's Cowork to run persistent background tasks — daily competitor analyses, hypothetical user tests, content audits — so I arrive at work already informed, not just getting started.",
     Icon: Search,
   },
 ];
@@ -83,13 +81,9 @@ const STEPS = [
 
 export function HowItWorksSection() {
   return (
-    <motion.section
+    <section
       id="how-it-works"
       className="scroll-mt-20 border-b border-app-border-subtle px-5 py-16 md:scroll-mt-8 md:px-10 md:py-24 lg:px-16"
-      variants={inViewBlock}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
     >
       <div className="mx-auto max-w-content">
         <SectionLabel label="PROCESS" title="How I design and ship" />
@@ -123,6 +117,6 @@ export function HowItWorksSection() {
           </ol>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

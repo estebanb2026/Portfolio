@@ -9,36 +9,40 @@ import { EASE, inViewBlock } from "@/lib/motion";
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "How do you work with product managers?",
-    a: "Closely and early. I don't wait for a PRD to start thinking. My best work happens when I'm in the room (or Slack thread) when the problem is being defined — not handed a brief after the fact. I push back when I think something is wrong, back it up with data or precedent, and then execute fast once we're aligned.",
+    q: "How do you manage speed without compromising quality?",
+    a: "By separating the two jobs. Speed lives in the process — AI-assisted scaffolding, reusable systems, fast prototypes that teams can react to instead of imagine. Quality lives in the judgment — knowing when a layout is wrong, when a flow has a gap, when something ships too early. I've built enough products to know the difference between moving fast with intention and cutting corners. The goal is always both.",
   },
   {
-    q: "How do you work with engineers?",
-    a: "I treat engineers as design partners, not ticket-takers. I share work early and often — in Figma, in the browser, in Loom — and I ask about constraints before I fall in love with a solution. I've used Claude Code and Cursor long enough to understand what \"hard to implement\" actually means, which makes the conversation a lot more productive.",
+    q: "How do you use AI in your day to day?",
+    a: "It's embedded in everything. Claude Code runs in my terminal and inside Figma via MCP — I use it to generate components, inject mock data, and build prototypes without switching contexts. Cursor is my IDE for writing and shipping code. Perplexity handles research and competitive audits. Claude's Cowork runs background tasks — daily comp analysis, hypothetical user tests — so I arrive informed. AI handles the drag. I handle the direction.",
   },
   {
-    q: "Do you have experience with design systems?",
-    a: "Yes — building them from scratch and scaling existing ones. At Pidwin I built a cross-product system across three products from zero. I think in components, states, and tokens before I think in screens.",
+    q: "Have you ever pushed back on a PM or founder? What happened?",
+    a: "Regularly. At one of my contracts, a PM had already committed to a direction for a complex workflow — breaking it into a multi-step modal flow. I thought it was the wrong call for the use case: too much context-switching for a task that needed full focus. I documented my reasoning, referenced comparable patterns in enterprise tools, and proposed a full-screen overlay instead. It wasn't a quick conversation, but we aligned and shipped my version. Document submission rates went up, support tickets went down. Pushback without a better answer is just friction — pushback with one is how good products get made.",
   },
   {
     q: "Can you own a product end to end?",
-    a: "That's where I do my best work. I've been a first design hire multiple times. I'm comfortable owning research, IA, visual design, prototyping, and working directly with engineering through launch — without someone telling me what to do next.",
+    a: "Yes — and it's where I do my best work. I've been a first design hire multiple times, which means I'm used to operating without a playbook. When the brief is thin or the problem space is undefined, I don't wait for clarity to find me — I go find it. I'm comfortable owning research, IA, visual design, prototyping, and seeing it through with engineering all the way to launch. Ambiguity doesn't slow me down; it's usually where the most interesting design decisions live.",
+  },
+  {
+    q: "How do you work with engineers?",
+    a: "I treat them as design partners from the start. That means bringing them into the process early — sharing rough flows before anything is polished, asking about constraints before I get attached to a solution, and being willing to redesign when something doesn't hold up technically. Using Claude Code and Cursor in my own workflow means I have a real sense of what's complex to build and what isn't, which changes the conversation entirely. Less back-and-forth, more building.",
+  },
+  {
+    q: "How do you work with product managers?",
+    a: "Best case, I'm in the room when the problem is still being defined — before the brief exists, when the thinking is messy and the direction isn't set. That's where design has the most leverage. But I've also jumped into projects with nothing more than a one-liner and a deadline, and I can work with that too. I know how to ask the right questions fast, fill in the gaps with judgment and research, and get to something real without needing everything handed to me upfront.",
+  },
+  {
+    q: "Do you have experience with design systems?",
+    a: "Yes — building them from scratch and inheriting broken ones. My approach is always systems-first: every design decision gets made with scale in mind, so components, states, and tokens are defined before screens are. That discipline is what makes design actually usable by engineering — consistent behavior, predictable patterns, faster handoff, and room to grow without refactoring everything every quarter.",
   },
   {
     q: "What kinds of products do you design best?",
-    a: "Data-heavy UX, AI-native products, consumer mobile, and anything where the interaction model is genuinely new. I've shipped across fintech, iGaming, AI tooling, healthcare, and marketplaces. I get up to speed fast in complex domains.",
-  },
-  {
-    q: "Are you open to full-time roles?",
-    a: "Yes. I'm currently contracting while I look for the right full-time senior IC or founding designer opportunity — remote, with a team that moves fast and cares about craft.",
-  },
-  {
-    q: "What time zones do you work in?",
-    a: "I'm in Orlando (ET) and comfortable across North American, South American, and European time zones. Async-first is fine; I overlap well with most teams.",
+    a: "I've shipped across fintech, iGaming, AI tooling, healthcare, consumer mobile, and B2B SaaS — so the honest answer is: a wide range. I'm most energized by products with real complexity — data-heavy interfaces, AI-native workflows, or interaction models that don't have an obvious precedent. But I've also done the unglamorous work: onboarding flows, dashboard UX, billing and permissions, support tooling. That breadth matters. I get up to speed fast in complex domains.",
   },
   {
     q: "What's your design process when joining a new team?",
-    a: "First two weeks: listen more than I talk. I audit what exists, understand the codebase at a surface level, map the current user flows, and find the biggest point of friction. Then I propose a clear first project — something real, shippable, and visible — to build trust and momentum.",
+    a: "I treat the first few weeks like a research sprint. I audit what exists, map the current user flows, get time with any and all stakeholders, and look for the gap between what the product does and what users actually need. I'm not waiting to be told what to work on. By the time I've gotten my bearings I usually already have a proposal on the table — something real, shippable, and visible that builds trust and creates momentum. I absorb context fast and I take initiative early.",
   },
 ];
 
@@ -57,7 +61,7 @@ export function FAQSection() {
       <div className="mx-auto max-w-content">
         <SectionLabel
           label="FAQ"
-          title="Things you'd probably ask me anyway"
+          title="You probably already have questions. Here are the answers."
         />
 
         <div className="space-y-3">
@@ -89,7 +93,7 @@ export function FAQSection() {
                       transition={{ duration: 0.4, ease: EASE }}
                       className="overflow-hidden border-t border-app-border-glass"
                     >
-                      <p className="px-5 pb-5 pt-1 text-sm text-app-muted md:px-6 md:pb-6 md:text-base">
+                      <p className="px-5 py-5 text-sm text-app-muted md:px-6 md:py-6 md:text-base">
                         {item.a}
                       </p>
                     </motion.div>

@@ -5,7 +5,6 @@ import { useCallback, useEffect, useState } from "react";
 export const SECTION_IDS = [
   "overview",
   "how-it-works",
-  "design-to-code",
   "my-works",
   "faq",
 ] as const;

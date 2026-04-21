@@ -3,20 +3,12 @@ import { site } from "@/lib/site";
 export function Footer() {
   return (
     <footer className="border-t border-app-border-subtle px-5 pb-16 pt-12 md:px-10 lg:px-16">
-      <div className="mx-auto flex max-w-content flex-col gap-10 md:flex-row md:items-start md:justify-between">
-        <div>
-          <p className="text-lg font-medium text-app-text">{site.name}</p>
-          <p className="mt-2 text-sm text-app-muted">{site.title}</p>
-        </div>
-        <div className="flex flex-col gap-3 font-mono-label md:flex-row md:gap-8">
-          <a
-            href={site.portfolio}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-app-faint transition hover:text-app-text"
-          >
-            barreraesteban.com ↗
-          </a>
+      <div className="mx-auto flex max-w-content flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-10">
+        <p className="shrink-0 text-lg font-medium text-app-text">Esteban Barrera</p>
+        <p className="max-w-xl text-sm leading-relaxed text-app-muted md:flex-1 md:text-center">
+          Designed with Figma. Built with Cursor/Claude Code.
+        </p>
+        <div className="flex shrink-0 flex-col gap-3 font-mono-label md:flex-row md:gap-8">
           <a
             href={site.linkedin}
             target="_blank"
@@ -35,9 +27,6 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <p className="mx-auto mt-14 max-w-content text-center font-mono-label text-app-faint">
-        Created by Esteban Barrera · Designed with Claude Code & Cursor
-      </p>
     </footer>
   );
 }

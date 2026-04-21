@@ -5,11 +5,11 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import { EASE } from "@/lib/motion";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV: { id: SectionId | null; label: string; href: string; external?: boolean }[] = [
   { id: "overview", label: "Overview", href: "#overview" },
   { id: "how-it-works", label: "How It Works", href: "#how-it-works" },
-  { id: "design-to-code", label: "Design to Code", href: "#design-to-code" },
   { id: "my-works", label: "My Works", href: "#my-works" },
   { id: "faq", label: "FAQ", href: "#faq" },
   { id: null, label: "GitHub ↗", href: "https://github.com/barreraesteban", external: true },
@@ -66,7 +66,10 @@ export function NavSidebar() {
 
       <aside className="hidden md:fixed md:left-0 md:top-0 md:z-30 md:flex md:h-screen md:w-56 md:flex-col md:border-r md:border-app-border-subtle md:bg-app-bg/80 md:px-6 md:py-10 md:backdrop-blur-sm">
         <p className="font-mono-label text-app-faint">Navigation</p>
-        <nav className="mt-10 flex flex-1 flex-col gap-1" aria-label="Primary">
+        <nav
+          className="mt-10 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto"
+          aria-label="Primary"
+        >
           {NAV.map((item) =>
             item.external ? (
               <a
@@ -93,6 +96,9 @@ export function NavSidebar() {
             )
           )}
         </nav>
+        <div className="mt-auto shrink-0 border-t border-app-border-subtle pt-6">
+          <ThemeToggle />
+        </div>
       </aside>
 
       <AnimatePresence>
@@ -116,35 +122,40 @@ export function NavSidebar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.35, ease: EASE }}
-              className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-app-border-subtle bg-app-bg px-6 py-24"
+              className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-app-border-subtle bg-app-bg px-6 pb-8 pt-24"
               aria-label="Mobile primary"
             >
-              {NAV.map((item) =>
-                item.external ? (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={linkClass(null, true)}
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className={linkClass(item.id)}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onNavigate(item.href);
-                    }}
-                  >
-                    {item.label}
-                  </a>
-                )
-              )}
+              <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
+                {NAV.map((item) =>
+                  item.external ? (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClass(null, true)}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className={linkClass(item.id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate(item.href);
+                      }}
+                    >
+                      {item.label}
+                    </a>
+                  )
+                )}
+              </div>
+              <div className="mt-6 shrink-0 border-t border-app-border-subtle pt-6">
+                <ThemeToggle />
+              </div>
             </motion.nav>
           </motion.div>
         )}

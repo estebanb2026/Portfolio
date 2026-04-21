@@ -5,7 +5,6 @@ import { GlassCard } from "@/components/GlassCard";
 import { PlaceholderMedia } from "@/components/PlaceholderMedia";
 import { SectionLabel } from "@/components/SectionLabel";
 import { inViewBlock } from "@/lib/motion";
-import { site } from "@/lib/site";
 
 const PROJECTS = [
   {
@@ -119,36 +118,6 @@ export function MyWorksSection() {
               </div>
             </GlassCard>
           ))}
-        </div>
-
-        <div className="mt-14 flex flex-col items-start gap-4 border-t border-app-border-subtle pt-10 md:mt-20 md:flex-row md:items-center md:gap-10 md:pt-14">
-          <p className="font-mono-label text-app-faint">Want the full picture?</p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:gap-8">
-            <a
-              href={site.designDeck}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono-label text-app-faint transition hover:text-app-text"
-            >
-              View Design Deck ↗
-            </a>
-            <a
-              href={site.ndaPortfolio}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono-label text-app-faint transition hover:text-app-text"
-            >
-              View NDA Portfolio ↗
-            </a>
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono-label text-app-faint transition hover:text-app-text"
-            >
-              LinkedIn ↗
-            </a>
-          </div>
         </div>
       </div>
     </motion.section>
