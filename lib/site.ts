@@ -23,7 +23,7 @@ export const site = {
   github: "https://github.com/estebanb2026",
   linkedin: absoluteUrlFromEnv(
     process.env.NEXT_PUBLIC_LINKEDIN_URL,
-    "https://linkedin.com/in/barreraesteban"
+    "https://www.linkedin.com/in/barreraesteban/"
   ),
   designDeck: absoluteUrlFromEnv(
     process.env.NEXT_PUBLIC_DESIGN_DECK_URL,

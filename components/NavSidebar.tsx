@@ -6,13 +6,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import { EASE } from "@/lib/motion";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { site } from "@/lib/site";
 
 const NAV: { id: SectionId | null; label: string; href: string; external?: boolean }[] = [
   { id: "overview", label: "Overview", href: "#overview" },
   { id: "how-it-works", label: "How It Works", href: "#how-it-works" },
   { id: "my-works", label: "My Works", href: "#my-works" },
   { id: "faq", label: "FAQ", href: "#faq" },
-  { id: null, label: "GitHub ↗", href: "https://github.com/estebanb2026", external: true },
+  { id: null, label: "LinkedIn ↗", href: site.linkedin, external: true },
+  { id: null, label: "GitHub ↗", href: site.github, external: true },
 ];
 
 function scrollToHash(hash: string) {
