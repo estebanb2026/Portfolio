@@ -18,6 +18,14 @@ export function Footer() {
             LinkedIn ↗
           </a>
           <a
+            href={site.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-app-faint transition hover:text-app-text"
+          >
+            Résumé ↗
+          </a>
+          <a
             href={site.github}
             target="_blank"
             rel="noopener noreferrer"

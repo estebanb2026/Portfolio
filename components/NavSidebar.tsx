@@ -14,6 +14,7 @@ const NAV: { id: SectionId | null; label: string; href: string; external?: boole
   { id: "my-works", label: "My Works", href: "#my-works" },
   { id: "faq", label: "FAQ", href: "#faq" },
   { id: null, label: "LinkedIn ↗", href: site.linkedin, external: true },
+  { id: null, label: "Résumé ↗", href: site.resume, external: true },
   { id: null, label: "GitHub ↗", href: site.github, external: true },
 ];
 

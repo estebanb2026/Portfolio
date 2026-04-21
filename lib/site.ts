@@ -25,6 +25,10 @@ export const site = {
     process.env.NEXT_PUBLIC_LINKEDIN_URL,
     "https://www.linkedin.com/in/barreraesteban/"
   ),
+  resume: absoluteUrlFromEnv(
+    process.env.NEXT_PUBLIC_RESUME_URL,
+    "https://www.notion.so/Esteban-Barrera-Resume-2e57d5bc56fb80b6b7dffa12fc8445ba"
+  ),
   designDeck: absoluteUrlFromEnv(
     process.env.NEXT_PUBLIC_DESIGN_DECK_URL,
     "https://barreraesteban.com"
