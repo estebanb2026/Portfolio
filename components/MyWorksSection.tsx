@@ -6,7 +6,22 @@ import { GlassCard } from "@/components/GlassCard";
 import { SectionLabel } from "@/components/SectionLabel";
 import { inViewBlock } from "@/lib/motion";
 
-const PROJECTS = [
+type ProjectEntry = {
+  name: string;
+  type: string;
+  role: string;
+  headline: string;
+  description: string;
+  impact: string;
+  href: string;
+  screenshotSrc: string;
+  /** Horizontal inset so screenshots aren’t edge-to-edge (avoids logo/UI crop on sides). */
+  screenshotInsetClassName?: string;
+  /** Extra classes for the image (object-fit / object-position). */
+  screenshotImageClassName?: string;
+};
+
+const PROJECTS: ProjectEntry[] = [
   {
     name: "GetFiber.ai",
     type: "AI · Fintech",
@@ -18,6 +33,8 @@ const PROJECTS = [
       "~25% increase in completed intakes · ~30% fewer support tickets · ~20% increase in successful document-linking",
     href: "https://getfiber.ai",
     screenshotSrc: "/images/work/getfiber.png",
+    screenshotInsetClassName: "px-[5%] sm:px-[6%]",
+    screenshotImageClassName: "object-left",
   },
   {
     name: "Pidwin (Runestake, RBXGold, Chicken.gg)",
@@ -41,6 +58,8 @@ const PROJECTS = [
     impact: "17% faster design-to-dev cycles · 25% better early activation",
     href: "https://branchprompt.com",
     screenshotSrc: "/images/work/branchprompt.png",
+    screenshotInsetClassName: "px-[5%] sm:px-[6%]",
+    screenshotImageClassName: "object-left",
   },
   {
     name: "Fitted Closet",
@@ -65,6 +84,8 @@ const PROJECTS = [
     impact: "~8% conversion lift · improved enterprise client retention",
     href: "https://crewfare.com",
     screenshotSrc: "/images/work/crewfare.png",
+    screenshotInsetClassName: "pt-[2.5%]",
+    screenshotImageClassName: "object-top",
   },
   {
     name: "Duffl",
@@ -77,6 +98,8 @@ const PROJECTS = [
     impact: "13% retention increase · 12–16% subscription revenue lift",
     href: "https://duffl.com",
     screenshotSrc: "/images/work/duffl.png",
+    screenshotInsetClassName: "pt-[2%] pl-[12%] pr-[5%] sm:pl-[14%]",
+    screenshotImageClassName: "object-contain object-left object-top",
   },
 ];
 
@@ -84,21 +107,33 @@ function ProjectScreenshot({
   src,
   alt,
   priority,
+  insetClassName,
+  imageClassName,
 }: {
   src: string;
   alt: string;
   priority?: boolean;
+  insetClassName?: string;
+  imageClassName?: string;
 }) {
   return (
     <div className="relative min-h-[12rem] w-full flex-1 bg-app-surface lg:min-h-0">
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        sizes="(min-width: 1024px) 50vw, 100vw"
-        className="object-cover"
-      />
+      <div
+        className={`relative h-full min-h-0 w-full ${insetClassName ?? ""}`.trim()}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className={
+            imageClassName?.includes("object-contain")
+              ? imageClassName
+              : `object-cover ${imageClassName ?? ""}`.trim()
+          }
+        />
+      </div>
     </div>
   );
 }
@@ -145,6 +180,8 @@ export function MyWorksSection() {
                     src={project.screenshotSrc}
                     alt={project.name}
                     priority={index === 0}
+                    insetClassName={project.screenshotInsetClassName}
+                    imageClassName={project.screenshotImageClassName}
                   />
                   <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-gradient-to-t from-black/75 via-black/45 to-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span
