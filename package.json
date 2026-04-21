@@ -3,18 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=18.17.0 <23"
+    "node": ">=18.17.0 <25"
   },
   "scripts": {
     "clean": "rimraf .next node_modules/.cache",
-    "dev": "node scripts/check-node.cjs && next dev -p 3000",
-    "dev:host": "node scripts/check-node.cjs && next dev -p 3000 -H 0.0.0.0",
-    "dev:turbo": "node scripts/check-node.cjs && next dev -p 3000 --turbo",
+    "dev": "node scripts/check-node.cjs && node scripts/dev-with-port.cjs --turbo",
+    "dev:webpack": "node scripts/check-node.cjs && node scripts/dev-with-port.cjs",
+    "dev:3001": "node scripts/check-node.cjs && DEV_PORT=3001 node scripts/dev-with-port.cjs --turbo",
+    "dev:host": "node scripts/check-node.cjs && node scripts/dev-with-port.cjs --turbo -H 0.0.0.0",
+    "dev:turbo": "npm run dev",
     "dev:clean": "node scripts/check-node.cjs && npm run clean && npm run dev",
     "build": "next build",
     "verify": "next build",
     "repair": "npm run clean && npm run build",
-    "start": "node scripts/check-node.cjs && node scripts/prepare-start.cjs && next start -p 3000",
+    "start": "node scripts/check-node.cjs && node scripts/prepare-start.cjs && next start -p ${PORT:-3000}",
     "preview": "npm run build && npm run start",
     "lint": "next lint"
   },

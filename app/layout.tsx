@@ -4,6 +4,7 @@ import { DM_Mono, DM_Sans } from "next/font/google";
 import "../styles/globals.css";
 import { site } from "@/lib/site";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { CursorSpotlight } from "@/components/CursorSpotlight";
 
 /** Clash Display — self-hosted from Fontshare (WOFF2). */
 const clashDisplay = localFont({
@@ -119,7 +120,10 @@ export default function RootLayout({
       <body
         className={`${dmSans.className} ${clashDisplay.variable} ${dmSans.variable} ${dmMono.variable} bg-app-bg text-app-muted`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <CursorSpotlight />
+        <ThemeProvider>
+          <div className="relative z-[1]">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -15,8 +15,13 @@ export function HeroSection() {
   return (
     <section
       id="overview"
-      className="scroll-mt-20 border-b border-app-border-subtle px-5 pt-8 md:scroll-mt-8 md:px-10 md:pt-16 lg:px-16"
+      className="relative scroll-mt-20 border-b border-app-border-subtle px-5 pt-8 md:scroll-mt-8 md:px-10 md:pt-16 lg:px-16"
     >
+      <div
+        aria-hidden
+        data-code={`<HeroSection /> // Designed for humans. Built with AI.`}
+        className="pointer-events-none absolute inset-0 z-0 opacity-0"
+      />
       <div className="mx-auto w-full max-w-content pb-0">
         <motion.div
           className="flex w-full max-w-none flex-col gap-8 pb-12 md:pb-16"

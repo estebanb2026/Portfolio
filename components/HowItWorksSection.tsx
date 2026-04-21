@@ -83,8 +83,13 @@ export function HowItWorksSection() {
   return (
     <section
       id="how-it-works"
-      className="scroll-mt-20 border-b border-app-border-subtle px-5 py-16 md:scroll-mt-8 md:px-10 md:py-24 lg:px-16"
+      className="relative scroll-mt-20 border-b border-app-border-subtle px-5 py-16 md:scroll-mt-8 md:px-10 md:py-24 lg:px-16"
     >
+      <div
+        aria-hidden
+        data-code={`tools.map((tool) => <GlassCard key={tool.name} />)`}
+        className="pointer-events-none absolute inset-0 z-0 opacity-0"
+      />
       <div className="mx-auto max-w-content">
         <SectionLabel label="PROCESS" title="How I design and ship" />
 

@@ -32,6 +32,14 @@ html.light {
   --border-subtle: #d4d4d0;
 }
 
+/* Cursor spotlight — hide system cursor on fine pointers when component is active */
+@media (pointer: fine) {
+  html.cursor-spotlight-hide,
+  html.cursor-spotlight-hide * {
+    cursor: none !important;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

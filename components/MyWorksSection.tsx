@@ -71,12 +71,17 @@ export function MyWorksSection() {
   return (
     <motion.section
       id="my-works"
-      className="scroll-mt-20 border-b border-app-border-subtle px-5 py-16 md:scroll-mt-8 md:px-10 md:py-24 lg:px-16"
+      className="relative scroll-mt-20 border-b border-app-border-subtle px-5 py-16 md:scroll-mt-8 md:px-10 md:py-24 lg:px-16"
       variants={inViewBlock}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
     >
+      <div
+        aria-hidden
+        data-code={`projects.filter(p => p.featured).map(renderProjectCard)`}
+        className="pointer-events-none absolute inset-0 z-0 opacity-0"
+      />
       <div className="mx-auto max-w-content">
         <SectionLabel
           label="SELECTED WORK"
