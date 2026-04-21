@@ -124,7 +124,7 @@ export function NavSidebar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.35, ease: EASE }}
-              className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-app-border-subtle bg-app-bg px-6 pb-8 pt-24"
+              className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-app-border-subtle bg-app-bg px-6 pb-8 pt-6"
               aria-label="Mobile primary"
             >
               <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
