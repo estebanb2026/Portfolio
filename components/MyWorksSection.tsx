@@ -21,6 +21,27 @@ type ProjectEntry = {
   screenshotImageClassName?: string;
 };
 
+/** Matches reference: subtle fill, 1px border, ~6px radius, sans caps, 8px gap between tags. */
+function ProjectTypeTags({ type }: { type: string }) {
+  const tags = type
+    .split(/\s*·\s*/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="inline-flex items-center rounded-md border border-[#d4d4d0] bg-[#f0f0ee] px-2.5 py-1 text-[11px] font-normal uppercase leading-none tracking-[0.06em] text-[#5c5c5a] dark:border-[#2e2e2e] dark:bg-[#141414] dark:text-[#a1a1aa]"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 const PROJECTS: ProjectEntry[] = [
   {
     name: "GetFiber.ai",
@@ -116,22 +137,25 @@ function ProjectScreenshot({
   insetClassName?: string;
   imageClassName?: string;
 }) {
+  // Default object-contain (full frame visible); add object-cover in data to fill-crop.
+  const imgClass =
+    imageClassName?.includes("object-cover") ||
+    imageClassName?.includes("object-contain")
+      ? (imageClassName ?? "")
+      : `object-contain ${imageClassName ?? ""}`.trim();
+
   return (
-    <div className="relative min-h-[12rem] w-full flex-1 bg-app-surface lg:min-h-0">
+    <div className="relative w-full overflow-hidden bg-app-surface aspect-[16/9] min-h-[14rem] sm:min-h-[15rem] lg:aspect-[2/1] lg:min-h-[220px]">
       <div
-        className={`relative h-full min-h-0 w-full ${insetClassName ?? ""}`.trim()}
+        className={`absolute inset-0 ${insetClassName ?? ""}`.trim()}
       >
         <Image
           src={src}
           alt={alt}
           fill
           priority={priority}
-          sizes="(min-width: 1024px) 50vw, 100vw"
-          className={
-            imageClassName?.includes("object-contain")
-              ? imageClassName
-              : `object-cover ${imageClassName ?? ""}`.trim()
-          }
+          sizes="(min-width: 1024px) 42vw, 100vw"
+          className={imgClass}
         />
       </div>
     </div>
@@ -159,23 +183,21 @@ export function MyWorksSection() {
           title="Products I've designed and shipped"
         />
 
-        <div className="space-y-12 md:space-y-16">
+        <div className="grid grid-cols-1 gap-12 md:gap-14 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-12 xl:gap-x-10">
           {PROJECTS.map((project, index) => (
             <a
               key={project.name}
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block cursor-pointer rounded-xl outline-none transition duration-300 hover:scale-[1.008] hover:ring-1 hover:ring-white/15"
+              className="group flex h-full cursor-pointer flex-col rounded-xl outline-none transition duration-300 hover:scale-[1.008] hover:ring-1 hover:ring-white/15"
               aria-label={`${project.name} — open site in new tab`}
             >
               <GlassCard
                 hover={false}
-                className={`overflow-hidden p-0 lg:flex lg:items-stretch lg:divide-x lg:divide-app-border-glass ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
+                className="flex h-full flex-col overflow-hidden p-0 divide-y divide-app-border-glass"
               >
-                <div className="relative min-h-0 min-w-0 shrink-0 lg:flex lg:w-1/2 lg:flex-col lg:self-stretch">
+                <div className="relative w-full shrink-0">
                   <ProjectScreenshot
                     src={project.screenshotSrc}
                     alt={project.name}
@@ -192,8 +214,8 @@ export function MyWorksSection() {
                     </span>
                   </div>
                 </div>
-                <div className="flex min-h-0 flex-1 flex-col justify-center gap-4 p-6 md:p-8 lg:w-1/2 lg:min-w-0 lg:gap-5">
-                  <p className="font-mono-label text-app-faint">{project.type}</p>
+                <div className="flex min-h-0 flex-1 flex-col justify-center gap-4 p-6 md:p-8 lg:gap-5">
+                  <ProjectTypeTags type={project.type} />
                   <p className="text-sm text-app-muted">{project.role}</p>
                   <h3 className="text-lg font-medium leading-snug text-app-text">
                     {project.headline}
