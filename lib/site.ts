@@ -20,10 +20,10 @@ export const site = {
   name: "Esteban Barrera",
   title: "Senior Product Designer",
   portfolio: "https://barreraesteban.com",
-  github: "https://github.com/barreraesteban",
+  github: "https://github.com/estebanb2026",
   linkedin: absoluteUrlFromEnv(
     process.env.NEXT_PUBLIC_LINKEDIN_URL,
-    "https://www.linkedin.com"
+    "https://linkedin.com/in/barreraesteban"
   ),
   designDeck: absoluteUrlFromEnv(
     process.env.NEXT_PUBLIC_DESIGN_DECK_URL,

@@ -56,7 +56,7 @@ const PROJECTS = [
   },
   {
     name: "Crewfare",
-    type: "B2B2C · Travel",
+    type: "B2B2C · Live Events",
     role: "Senior Product Designer (Contract)",
     headline: "Group travel UX for festivals and live events at scale",
     description:

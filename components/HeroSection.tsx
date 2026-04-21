@@ -15,7 +15,7 @@ export function HeroSection() {
   return (
     <section
       id="overview"
-      className="scroll-mt-20 border-b border-app-border-subtle px-5 pt-24 md:scroll-mt-8 md:px-10 md:pt-16 lg:px-16"
+      className="scroll-mt-20 border-b border-app-border-subtle px-5 pt-8 md:scroll-mt-8 md:px-10 md:pt-16 lg:px-16"
     >
       <div className="mx-auto w-full max-w-content pb-0">
         <motion.div

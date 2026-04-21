@@ -12,7 +12,7 @@ const NAV: { id: SectionId | null; label: string; href: string; external?: boole
   { id: "how-it-works", label: "How It Works", href: "#how-it-works" },
   { id: "my-works", label: "My Works", href: "#my-works" },
   { id: "faq", label: "FAQ", href: "#faq" },
-  { id: null, label: "GitHub ↗", href: "https://github.com/barreraesteban", external: true },
+  { id: null, label: "GitHub ↗", href: "https://github.com/estebanb2026", external: true },
 ];
 
 function scrollToHash(hash: string) {
