@@ -35,7 +35,7 @@ export const site = {
   ),
   ndaPortfolio: absoluteUrlFromEnv(
     process.env.NEXT_PUBLIC_NDA_PORTFOLIO_URL,
-    "https://barreraesteban.com"
+    "https://www.figma.com/design/qjLI9eKXuGs0DJkNnk8mzh/Design-Portfolio%F0%9F%8E%A8?node-id=4732-2&t=TblNu9p0DXOcHfG1-1"
   ),
   canonical: absoluteUrlFromEnv(
     process.env.NEXT_PUBLIC_SITE_URL,

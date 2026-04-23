@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { FooterLinkRow } from "@/components/FooterLinkRow";
 
 export function Footer() {
   return (
@@ -8,32 +8,7 @@ export function Footer() {
         <p className="max-w-xl text-sm leading-relaxed text-app-muted md:flex-1 md:text-center">
           Designed with Figma. Built with Cursor/Claude Code.
         </p>
-        <div className="flex shrink-0 flex-col gap-3 font-mono-label md:flex-row md:gap-8">
-          <a
-            href={site.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-app-faint transition hover:text-app-text"
-          >
-            LinkedIn ↗
-          </a>
-          <a
-            href={site.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-app-faint transition hover:text-app-text"
-          >
-            Résumé ↗
-          </a>
-          <a
-            href={site.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-app-faint transition hover:text-app-text"
-          >
-            GitHub ↗
-          </a>
-        </div>
+        <FooterLinkRow />
       </div>
     </footer>
   );

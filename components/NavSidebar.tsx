@@ -6,16 +6,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import { EASE } from "@/lib/motion";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { NdaPortfolioModal } from "@/components/NdaPortfolioModal";
 import { site } from "@/lib/site";
 
-const NAV: { id: SectionId | null; label: string; href: string; external?: boolean }[] = [
+const SECTION_NAV: { id: SectionId; label: string; href: string }[] = [
   { id: "overview", label: "Overview", href: "#overview" },
   { id: "how-it-works", label: "How It Works", href: "#how-it-works" },
   { id: "my-works", label: "My Works", href: "#my-works" },
   { id: "faq", label: "FAQ", href: "#faq" },
-  { id: null, label: "LinkedIn ↗", href: site.linkedin, external: true },
-  { id: null, label: "Résumé ↗", href: site.resume, external: true },
-  { id: null, label: "GitHub ↗", href: site.github, external: true },
 ];
 
 function scrollToHash(hash: string) {
@@ -27,6 +25,7 @@ function scrollToHash(hash: string) {
 export function NavSidebar() {
   const activeId = useActiveSection();
   const [open, setOpen] = useState(false);
+  const [ndaOpen, setNdaOpen] = useState(false);
 
   const onNavigate = useCallback(
     (href: string, external?: boolean) => {
@@ -73,36 +72,63 @@ export function NavSidebar() {
           className="mt-10 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto"
           aria-label="Primary"
         >
-          {NAV.map((item) =>
-            item.external ? (
-              <a
-                key={item.href}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={linkClass(null, true)}
-              >
-                {item.label}
-              </a>
-            ) : (
-              <a
-                key={item.href}
-                href={item.href}
-                className={linkClass(item.id)}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate(item.href);
-                }}
-              >
-                {item.label}
-              </a>
-            )
-          )}
+          {SECTION_NAV.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className={linkClass(item.id)}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(item.href);
+              }}
+            >
+              {item.label}
+            </a>
+          ))}
+          <button
+            type="button"
+            className={linkClass(null, true)}
+            onClick={() => setNdaOpen(true)}
+          >
+            NDA Portfolio ↗
+          </button>
+          <a
+            href={site.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass(null, true)}
+          >
+            Resume ↗
+          </a>
+          <a
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass(null, true)}
+          >
+            LinkedIn ↗
+          </a>
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={linkClass(null, true)}
+          >
+            GitHub ↗
+          </a>
         </nav>
         <div className="mt-auto shrink-0 border-t border-app-border-subtle pt-6">
           <ThemeToggle />
         </div>
       </aside>
+
+      <NdaPortfolioModal
+        open={ndaOpen}
+        onClose={() => setNdaOpen(false)}
+        onVerified={() => {
+          window.open(site.ndaPortfolio, "_blank", "noopener,noreferrer");
+        }}
+      />
 
       <AnimatePresence>
         {open && (
@@ -129,32 +155,56 @@ export function NavSidebar() {
               aria-label="Mobile primary"
             >
               <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
-                {NAV.map((item) =>
-                  item.external ? (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={linkClass(null, true)}
-                      onClick={() => setOpen(false)}
-                    >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className={linkClass(item.id)}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        onNavigate(item.href);
-                      }}
-                    >
-                      {item.label}
-                    </a>
-                  )
-                )}
+                {SECTION_NAV.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={linkClass(item.id)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(item.href);
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <button
+                  type="button"
+                  className={linkClass(null, true)}
+                  onClick={() => {
+                    setNdaOpen(true);
+                    setOpen(false);
+                  }}
+                >
+                  NDA Portfolio ↗
+                </button>
+                <a
+                  href={site.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClass(null, true)}
+                  onClick={() => setOpen(false)}
+                >
+                  Resume ↗
+                </a>
+                <a
+                  href={site.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClass(null, true)}
+                  onClick={() => setOpen(false)}
+                >
+                  LinkedIn ↗
+                </a>
+                <a
+                  href={site.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClass(null, true)}
+                  onClick={() => setOpen(false)}
+                >
+                  GitHub ↗
+                </a>
               </div>
               <div className="mt-6 shrink-0 border-t border-app-border-subtle pt-6">
                 <ThemeToggle />
